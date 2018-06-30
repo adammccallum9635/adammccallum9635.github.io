@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="css/homepage.css" rel="stylesheet">
+    </head> 
+    <body>
+    <div class="background">
+    <div class="content">
+        <div>         
+        <h1>Thanks for visiting my shop</h1>
+        <form action="index.html" method="post" onsubmit="return validation();">
+            <h2>Before proceeding:</h2>
+            <p>-Click the calculate button to receive information about your plan. <br>
+            -Down payments are 10% of a phone's price.<br>
+            -Once everything has been filled in, click the submit button.</p>
+        <fieldset>
+            <label>Name:</label>
+            <br>
+            <input type="text" id="firstName" placeholder="first" name="firstName"/>
+            <input type="text" id="lastName" placeholder="last" name="lastName"/>
+            <br>
+            <label>Date of birth:</label>
+            <br>
+            <input type="date" id="dateOfBirth" name="dateOfBirth"/>
+            <br>
+            <label>Select a phone:</label>
+            <br>
+            <select id="selectedModel">
+                <option id="0" value="0">iPhone 9 ($900)</option>
+                <option id="1" value="1">iPhone 8 ($750)</option>
+                <option id="2" value="2">iPhone 7 ($700)</option>
+                <option id="3" value="3">iPhone 6s ($550)</option>
+                <option id="4"value="4">Galaxy S9 ($750)</option>
+                <option id="5"value="5">Galaxy S ($700)</option>
+                <option id="6" value="6">Galaxy Note ($800)</option>
+                <option id="7"value="7">Galaxy A ($900)</option>                                
+                <option id="8"value="8">Pixel 2 ($550)</option>
+                <option id="9"value="9">Pixel 2 XL ($650)</option>
+                <option id="10" value="10">Pixel XL ($500)</option>
+            </select>
+            <br>
+
+            <label>Select a plan:</label>
+            <br>
+            <select id="selectedPlan">
+                <option value="6">6 Month</option>
+                <option value="9">9 Month</option>
+                <option value="12">12 Month</option>           
+            </select>
+
+
+            <br>
+
+            
+           
+            <button type="button" onclick="calculatePlan()">Calculate Your plan</button>
+            <br>
+            <br>
+            <label>Down payment:</label>
+            <br>
+            <input id="downPayment" type="" value="" readonly>
+            <br>
+            <label>Finance plan cost:</label>
+            <br>
+            <input id="financePlan" type="text"  value="" readonly>
+            <br>
+            <label>Monthly payment:</label>
+            <br>
+            <input id="monthlyPayment" type="text" value="" readonly>
+            <br>
+            <label>Total cost:</label>
+            <br>
+            <input id="totalCost" type="text" value="" readonly>
+            <br>
+            <input type="submit" value="Click to purchase"> </submit>
+            
+        </fieldset>
+        </form>
+    </div> 
+    </div>
+    </div>
+    </body>
+
+<script>
+    var phones = [
+    ["ipPhone 9",900],
+    ["iPhone 8",750],
+    ["iPhone 7",700],
+    ["iPhone 6s",550],
+    ["Galaxy S9",750],
+    ["Galaxy S",700],
+    ["Galaxy Note",800],
+    ["Galaxy A",900],
+    ["Pixel 2",550],
+    ["Pixel 2 XL",650],
+    ["Pixel XL",500],
+    ];
+
+var totalCost;
+var downPayment;
+var monthlyPayment;
+var totalCostAfterDown;
+var planLength;
+var selectedPhone;
+
+function calculatePlan(){
+selectedPhone = parseInt(document.getElementById("selectedModel").value);
+totalCost = phones[selectedPhone][1];
+downPayment = totalCost/10;
+totalCostAfterDown = totalCost-downPayment;
+
+planLength = parseInt(document.getElementById("selectedPlan").value);
+monthlyPayment = totalCostAfterDown/planLength;
+
+document.getElementById("downPayment").value = "$"+downPayment.toString();
+document.getElementById("financePlan").value = "$"+totalCostAfterDown.toString();
+document.getElementById("monthlyPayment").value = "$"+monthlyPayment.toString()+" for "+planLength.toString()+" months";
+document.getElementById("totalCost").value = "$"+totalCost.toString();
+}
+
+function validation(){
+var firstName = document.getElementById("firstName").value;
+var lastName = document.getElementById("lastName").value;
+var dateOfBirth = document.getElementById("dateOfBirth").value;
+    if (firstName=="" || lastName=="" || dateOfBirth==""){
+         alert("Make sure to fill in everything");
+         return false
+}
+else{
+    confirm("Are you sure you want to purchase the phone?");
+    alert("It costs "+monthlyPayment+" per month.");
+}
+}
+
+
+    </script>
+</html>

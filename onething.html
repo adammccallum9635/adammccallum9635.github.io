@@ -1,0 +1,38 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+
+
+        <form id="orderForm">
+            <select>
+                <option value="900.00" onclick="getDownPayment()">iPhone 6s ($900.00)</option>
+                <option value="1050.00" onclick="getDownPayment()">iPhone 8 ($1050.00)</option>
+                
+            </select>
+            <input type="text" value="0" id="tbxDownPayment">
+            <button onclick="getDownPayment()">This is a button</button>
+
+        </form>
+
+    </body> 
+    <script>
+    var cost=0;
+    var downpayment=0;
+    var monthlypayment=0;
+
+    var phoneType;
+    var phones = [
+        ["Iphone 6",900.00,90],
+        ["Galaxy GS",1050.00,105]
+    ]
+function getDownPayment(){
+    alert("hi");
+   cost = phone[phonetype,1];
+   document.getElementById("tbxDownPayment").innerHTML = cost;
+   
+    
+}
+    </script>
+</html>
